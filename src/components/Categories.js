@@ -1,9 +1,7 @@
 import React from 'react';
 
-export default class Categories extends React.Component {
-  render(){
-    return(
-      <button>Check Status</button>
-    )
-  }
-}
+const Categories = () => (
+  <button type="button">Check Status</button>
+);
+
+export default Categories;

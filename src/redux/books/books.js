@@ -1,12 +1,12 @@
 import { createStore } from 'redux';
 
-const Book_Removed = 'Book_Removed';
-const Book_Added = 'Book_Added';
+const BookRemoved = 'Book_Removed';
+const BookAdded = 'Book_Added';
 
 const lastId = 0;
 function booksReducer(state = [], action) {
   switch (action.type) {
-    case Book_Added:
+    case BookAdded:
       return [...state,
         {
           id: lastId + 1,
@@ -15,16 +15,16 @@ function booksReducer(state = [], action) {
           category: action.payload.category,
         },
       ];
-    case Book_Removed:
+    case BookRemoved:
       return state.filter((book) => book.id !== action.payload.id);
     default:
       return state;
   }
 }
 
-const bookAdded = (payload) => ({ type: Book_Added, payload });
+const bookAdded = (payload) => ({ type: BookAdded, payload });
 
-const bookRemoved = (id) => ({ type: Book_Removed, payload: id });
+const bookRemoved = (id) => ({ type: BookRemoved, payload: id });
 
 const store = createStore(booksReducer);
 store.dispatch(bookAdded);

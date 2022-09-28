@@ -1,6 +1,6 @@
 import { createStore } from 'redux';
 
-const CheckStatus = 'Check_Status';
+const CheckStatus = 'categories/categories/Check_Status';
 
 function categoriesReducer(state = [], action) {
   if (action.type === CheckStatus) {

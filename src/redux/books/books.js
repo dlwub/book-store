@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 
-const BookRemoved = 'Book_Removed';
-const BookAdded = 'Book_Added';
+const BookRemoved = 'books/books/Book_Removed';
+const BookAdded = 'books/books/Book_Added';
 
 const lastId = 0;
 function booksReducer(state = [], action) {

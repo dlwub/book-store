@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Books from './components/Books';
 import Categories from './components/Categories';
-import BookForm from './components/BookForm';
 
 function App() {
   return (
@@ -13,7 +12,6 @@ function App() {
         <Route path="/" element={<Books />} />
         <Route path="/categories" element={<Categories />} />
       </Routes>
-      <BookForm />
     </div>
   );
 }

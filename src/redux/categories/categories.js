@@ -1,31 +1,18 @@
 import { createStore } from 'redux';
 
 function categoriesReducer(state = [], action) {
-  switch (action.type) {
-    case 'categoryAdded':
-      return [...state, action.payload ];
-    case 'categoryRemoved':
-      return state.filter((category) => category !== action.payload);
-    default:
-      return state;
+  if (action.type === 'checkStatus') {
+    return 'Under construction';
   }
+  return state;
 }
 
-const categoryAdded = (text) => {
-	return {
-		type: actions.bookAdded,
-		payload: text
-	}
-}
-
-const categoryRemoved = (text) => {
-	return {
-		type: actions.bookRemoved,
-		payload: text
-}
-}
-
+const checkStatus = (title) => ({
+  type: 'Check_Status',
+  payload: title,
+});
 
 const store = createStore(categoriesReducer);
+store.dispatch(checkStatus);
 
-export {categoriesReducer, categoryAdded, categoryRemoved};
+export { categoriesReducer, checkStatus };

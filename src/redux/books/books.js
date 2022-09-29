@@ -1,32 +1,42 @@
 import { createStore } from 'redux';
+import { v4 as uuidv4 } from 'uuid';
 
-const BookRemoved = 'books/books/Book_Removed';
-const BookAdded = 'books/books/Book_Added';
-
-const lastId = 0;
-function booksReducer(state = [], action) {
+function booksReducer(state =
+[
+  {
+    id: uuidv4(),
+    title: 'The Alchemist',
+    author: 'Paulo Coelho',
+  },
+  {
+    id: uuidv4(),
+    title: 'Mindset',
+    author: 'Carol Dweck',
+  },
+],
+action) {
   switch (action.type) {
-    case BookAdded:
+    case 'book_added':
       return [...state,
         {
-          id: lastId + 1,
-          title: action.payload.tilte,
+          id: action.payload.id,
+          title: action.payload.title,
           author: action.payload.author,
-          category: action.payload.category,
         },
       ];
-    case BookRemoved:
-      return state.filter((book) => book.id !== action.payload.id);
+    case 'book_removed':
+      return state.filter((book) => book.id !== action.payload);
     default:
       return state;
   }
 }
 
-const bookAdded = (payload) => ({ type: BookAdded, payload });
+const bookAdded = (payload) => ({ type: 'book_added', payload });
 
-const bookRemoved = (id) => ({ type: BookRemoved, payload: id });
+const bookRemoved = (id) => ({ type: 'book_removed', payload: id });
 
 const store = createStore(booksReducer);
-store.dispatch(bookAdded);
 
-export { booksReducer, bookAdded, bookRemoved };
+export {
+  booksReducer, bookAdded, bookRemoved, store,
+};

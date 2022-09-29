@@ -1,29 +1,41 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
+import { bookAdded } from '../redux/books/books';
 
 function BookForm() {
+  const dispatch = useDispatch();
+  const handleClick = (e) => {
+    e.preventDefault();
+    const id = uuidv4();
+    const title = document.querySelector('.title').value;
+    const author = document.querySelector('.author').value;
+    dispatch(bookAdded({ id, title, author }));
+  };
+
   return (
     <>
       <h3>ADD NEW BOOK</h3>
-      <form className="book-form">
+      <form
+        type="submit"
+        value="ADD BOOK"
+      >
         <input
           type="text"
           placeholder="Book title"
-          name="titleInput"
-          required
+          className="title"
         />
         <input
           type="text"
           placeholder="Author"
-          name="authorInput"
-          required
+          className="author"
         />
-        <select
-          id="category"
-          name="selectForm"
+        <button
+          type="submit"
+          onClick={handleClick}
         >
-          <option value="" disabled hidden>Category</option>
-        </select>
-        <input type="submit" value="ADD BOOK" className="add-btn" />
+          ADD BOOK
+        </button>
       </form>
     </>
   );

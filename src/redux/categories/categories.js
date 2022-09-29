@@ -1,20 +1,16 @@
 import { createStore } from 'redux';
 
-const CheckStatus = 'categories/categories/Check_Status';
-
 function categoriesReducer(state = [], action) {
-  if (action.type === CheckStatus) {
+  if (action.type === 'check_status') {
     return 'Under construction';
   }
   return state;
 }
 
-const checkStatus = (title) => ({
-  type: CheckStatus,
-  payload: title,
+const checkStatus = () => ({
+  type: 'check_status',
 });
 
 const store = createStore(categoriesReducer);
-store.dispatch(CheckStatus);
 
-export { categoriesReducer, checkStatus };
+export { categoriesReducer, checkStatus, store };

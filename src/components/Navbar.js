@@ -5,10 +5,10 @@ import { faCircleUser } from '@fortawesome/free-regular-svg-icons';
 
 const Navbar = () => (
   <div className="header-container">
-    <h2>Bookstore CMS</h2>
-    <Link to="/">Books</Link>
-    <Link to="/categories">Categories</Link>
-    <FontAwesomeIcon icon={faCircleUser} />
+    <h2 className="header-text">Bookstore CMS</h2>
+    <Link className="links" to="/">BOOKS</Link>
+    <Link className="links" to="/categories">CATEGORIES</Link>
+    <FontAwesomeIcon className="icon" icon={faCircleUser} />
   </div>
 );
 export default Navbar;

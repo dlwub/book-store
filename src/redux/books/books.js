@@ -1,3 +1,4 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const API_BASE_URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/5qJ4MMb3pYrSXnMgN6ia/books';
@@ -27,7 +28,7 @@ function removeBookSucceeded(id) {
   };
 }
 
-export const fetchBooks = () => (dispatch) => {
+export const fetchBooks = createAsyncThunk(FETCHBOOK, async (_, thunkAPI) => {
   axios.get(API_BASE_URL).then((response) => {
     const books = Object.keys(response.data).map((key) => {
       const book = response.data[key][0];
@@ -36,18 +37,18 @@ export const fetchBooks = () => (dispatch) => {
         ...book,
       };
     });
-    dispatch(fetchBooksSucceeded(books));
+    thunkAPI.dispatch(fetchBooksSucceeded(books));
   });
-};
+});
 
-export const addBook = (book) => (dispatch) => {
-  axios.post(API_BASE_URL, book).then(() => dispatch(addBookSucceeded(book)));
-};
+export const addBook = createAsyncThunk(ADDBOOK, async (book, thunkAPI) => {
+  axios.post(API_BASE_URL, book).then(() => thunkAPI.dispatch(addBookSucceeded(book)));
+});
 
-export const removeBook = (id) => (dispatch) => {
+export const removeBook = createAsyncThunk(REMOVEBOOK, async (id, thunkAPI) => {
   axios.delete(`${API_BASE_URL}/${id}`, { item_id: id })
-    .then(() => dispatch(removeBookSucceeded(id)));
-};
+    .then(() => thunkAPI.dispatch(removeBookSucceeded(id)));
+});
 
 function booksReducer(state = [], action) {
   switch (action.type) {

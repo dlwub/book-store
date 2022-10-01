@@ -1,4 +1,25 @@
 body {
   margin: 0;
   padding: 0;
+  font-size: 16px;
+}
+
+.header-container {
+  display: flex;
+  padding: 1.25rem 3rem;
+  align-items: center;
+  border: 1px solid red;
+}
+
+.links {
+  text-decoration: none;
+  margin: 0 3vw;
+}
+
+.icon {
+  margin-left: 50vw;
+}
+
+.header-text {
+  color: rgb(81, 186, 238);
 }

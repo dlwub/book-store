@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { bookAdded } from '../redux/books/books';
+import { addBook } from '../redux/books/books';
 
 function BookForm() {
   const dispatch = useDispatch();
@@ -10,7 +10,10 @@ function BookForm() {
     const id = uuidv4();
     const title = document.querySelector('.title').value;
     const author = document.querySelector('.author').value;
-    dispatch(bookAdded({ id, title, author }));
+    const category = document.querySelector('.category').value;
+    dispatch(addBook({
+      item_id: id, title, author, category,
+    }));
   };
 
   return (
@@ -29,6 +32,11 @@ function BookForm() {
           type="text"
           placeholder="Author"
           className="author"
+        />
+        <input
+          type="text"
+          placeholder="Category"
+          className="category"
         />
         <button
           type="submit"

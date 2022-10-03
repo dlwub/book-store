@@ -4,9 +4,10 @@ import BookList from '../redux/BookList';
 
 const Books = () => (
   <>
-    <div className="booksList" />
-    <BookList />
-    <BookForm />
+    <div className="books-list">
+      <BookList />
+      <BookForm />
+    </div>
   </>
 );
 

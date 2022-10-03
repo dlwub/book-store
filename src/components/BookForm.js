@@ -8,44 +8,48 @@ function BookForm() {
   const handleClick = (e) => {
     e.preventDefault();
     const id = uuidv4();
-    const title = document.querySelector('.title').value;
-    const author = document.querySelector('.author').value;
-    const category = document.querySelector('.category').value;
+    const title = document.querySelector('.title-input').value;
+    const author = document.querySelector('.author-input').value;
+    const category = document.querySelector('.category-input').value;
     dispatch(addBook({
       item_id: id, title, author, category,
     }));
   };
 
   return (
-    <>
-      <h3>ADD NEW BOOK</h3>
+    <div className="book-form">
+      <h3 className="add-title">ADD NEW BOOK</h3>
       <form
         type="submit"
         value="ADD BOOK"
       >
         <input
           type="text"
+          name="title"
           placeholder="Book title"
-          className="title"
+          className="input title-input"
         />
         <input
           type="text"
+          name="author"
           placeholder="Author"
-          className="author"
+          className="input author-input"
         />
         <input
           type="text"
+          name="category"
           placeholder="Category"
-          className="category"
+          className="input category-input"
         />
         <button
           type="submit"
+          className="add-btn"
           onClick={handleClick}
         >
           ADD BOOK
         </button>
       </form>
-    </>
+    </div>
   );
 }
 

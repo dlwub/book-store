@@ -29,7 +29,7 @@ function removeBookSucceeded(id) {
 }
 
 export const fetchBooks = createAsyncThunk(FETCHBOOK, async (_, thunkAPI) => {
-  axios.get(API_BASE_URL).then((response) => {
+  await axios.get(API_BASE_URL).then((response) => {
     const books = Object.keys(response.data).map((key) => {
       const book = response.data[key][0];
       return {
@@ -42,11 +42,12 @@ export const fetchBooks = createAsyncThunk(FETCHBOOK, async (_, thunkAPI) => {
 });
 
 export const addBook = createAsyncThunk(ADDBOOK, async (book, thunkAPI) => {
-  axios.post(API_BASE_URL, book).then(() => thunkAPI.dispatch(addBookSucceeded(book)));
+  await axios.post(API_BASE_URL, book)
+    .then(() => thunkAPI.dispatch(addBookSucceeded(book)));
 });
 
 export const removeBook = createAsyncThunk(REMOVEBOOK, async (id, thunkAPI) => {
-  axios.delete(`${API_BASE_URL}/${id}`, { item_id: id })
+  await axios.delete(`${API_BASE_URL}/${id}`, { item_id: id })
     .then(() => thunkAPI.dispatch(removeBookSucceeded(id)));
 });
 
@@ -63,6 +64,4 @@ function booksReducer(state = [], action) {
   }
 }
 
-export {
-  booksReducer,
-};
+export { booksReducer };

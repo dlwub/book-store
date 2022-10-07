@@ -2,7 +2,7 @@
 
 # Book Store
 
-> The Bookstore is a website built with React and Redux that allows to display a list of books, add a book, and remove a selected book.
+> The Book Store is a website built using React and Redux. It has the functionality to display a list of books fetched from Bookstore API, add a book, and remove a selected book.
 
 ## Built With
 

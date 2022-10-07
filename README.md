@@ -9,7 +9,7 @@
 - React
 - Redux
 
-## Live Demo (if available)
+## Live Demo (https://dainty-sunshine-d5dab9.netlify.app/)
 
 ## Getting Started
 
